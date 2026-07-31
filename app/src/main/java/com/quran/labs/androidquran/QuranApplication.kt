@@ -3,6 +3,7 @@ package com.quran.labs.androidquran
 import android.app.Application
 import androidx.work.Configuration
 import androidx.work.WorkManager
+import com.quran.labs.androidquran.audio.AamerTimingSeeder
 import com.quran.labs.androidquran.core.worker.QuranWorkerFactory
 import com.quran.labs.androidquran.di.component.application.ApplicationComponent
 import com.quran.labs.androidquran.util.QuranSettings
@@ -23,6 +24,7 @@ open class QuranApplication : Application(), QuranApplicationComponentProvider {
   @Inject lateinit var quranWorkerFactory: QuranWorkerFactory
   @Inject lateinit var bookmarksWidgetSubscriber: BookmarksWidgetSubscriber
   @Inject lateinit var quranSettings: QuranSettings
+  @Inject lateinit var aamerTimingSeeder: AamerTimingSeeder
 
   override fun provideQuranApplicationComponent(): QuranApplicationComponent {
     return applicationComponent
@@ -35,6 +37,7 @@ open class QuranApplication : Application(), QuranApplicationComponentProvider {
     applicationComponent.inject(this)
     initializeWorkManager()
     bookmarksWidgetSubscriber.subscribeBookmarksWidgetIfNecessary()
+    aamerTimingSeeder.seedIfNeeded()
 
     // theme setup
     val theme = quranSettings.currentTheme()

@@ -224,7 +224,11 @@ constructor(
     }
 
     val dbName = qari.databaseName + AudioUtils.ZIP_EXTENSION
-    return quranFileUtils.gaplessDatabaseRootUrl + "/" + dbName
+    return if (qari.databaseName == "aamer") {
+      "https://cdn.jsdelivr.net/gh/ahmedio3/quran_android@main/databases/audio/$dbName"
+    } else {
+      quranFileUtils.gaplessDatabaseRootUrl + "/" + dbName
+    }
   }
 
   override fun bind(what: AudioPresenterScreen) {

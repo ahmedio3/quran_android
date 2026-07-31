@@ -454,7 +454,11 @@ class QuranFileUtils @Inject constructor(
   }
 
   override fun urlForDatabase(qari: Qari): String {
-    return gaplessDatabaseRootUrl + qari.databaseName + AudioUtils.ZIP_EXTENSION
+    return if (qari.databaseName == "aamer") {
+      "https://cdn.jsdelivr.net/gh/ahmedio3/quran_android@main/databases/audio/${qari.databaseName}${AudioUtils.ZIP_EXTENSION}"
+    } else {
+      gaplessDatabaseRootUrl + qari.databaseName + AudioUtils.ZIP_EXTENSION
+    }
   }
 
   fun getQuranImagesBaseDirectory(): File {

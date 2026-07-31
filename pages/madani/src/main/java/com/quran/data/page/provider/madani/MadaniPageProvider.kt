@@ -69,6 +69,14 @@ class MadaniPageProvider : PageProvider {
         path = "2",
         hasGaplessAlternative = false,
         db = null
+      ),
+      Qari(
+        3,
+        audioR.string.qari_aamer,
+        url = "https://server10.mp3quran.net/Aamer/",
+        path = "aamer",
+        hasGaplessAlternative = false,
+        db = "aamer"
       )
     )
   }
