@@ -1,0 +1,33 @@
+name: Build Debug APK
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Debug APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the Code
+        uses: actions/checkout@v7
+
+      - name: Setup JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version-file: .github/workflows/.java-version
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Build Debug Apk
+        run: ./gradlew assembleMadaniDebug
+
+      - name: Upload Debug Apk
+        uses: actions/upload-artifact@v7
+        if: success()
+        with:
+          name: quranapp-debug-apk
+          path: "app/build/outputs/apk/madani/debug/app-madani-debug.apk"
