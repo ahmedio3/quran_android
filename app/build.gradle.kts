@@ -69,6 +69,12 @@ android {
       keyAlias = project.property("KEY_ALIAS") as String
       keyPassword = project.property("KEY_PASSWORD") as String
     }
+    create("ciDebug") {
+      storeFile = file("../keystore/debug.keystore")
+      storePassword = "android"
+      keyAlias = "androiddebugkey"
+      keyPassword = "android"
+    }
   }
 
   flavorDimensions += listOf("pageType")
@@ -91,6 +97,7 @@ android {
     getByName("debug") {
       applicationIdSuffix = ".debug"
       versionNameSuffix = "-debug"
+      signingConfig = signingConfigs.getByName("ciDebug")
       matchingFallbacks += "release"
     }
 
