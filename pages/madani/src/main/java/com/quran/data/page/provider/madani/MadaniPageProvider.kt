@@ -77,6 +77,14 @@ class MadaniPageProvider : PageProvider {
         path = "aamer",
         hasGaplessAlternative = false,
         db = "aamer"
+      ),
+      Qari(
+        4,
+        audioR.string.qari_husary_iza3a_gapless,
+        url = "https://download.quranicaudio.com/quran/mahmood_khaleel_al-husaree_iza3a/128kbps/",
+        path = "husary_iza3a",
+        hasGaplessAlternative = false,
+        db = "husary_iza3a"
       )
     )
   }
